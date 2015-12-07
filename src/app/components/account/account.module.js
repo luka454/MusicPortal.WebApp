@@ -2,5 +2,6 @@
 	"use strict";
 	
 	angular
-		.module('mp.account', []);
+		.module('mp.account', [])
+		.constant('toastr', toastr);
 })();

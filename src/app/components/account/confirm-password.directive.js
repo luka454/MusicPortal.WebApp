@@ -18,6 +18,10 @@
 					
 					return angular.equals(data, scope.original);
 				}
+				
+				scope.$watch('original', function(newValue){
+					ctrl.$validate();
+				});
 			}
 		}
 	}

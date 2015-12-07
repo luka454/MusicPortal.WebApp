@@ -6,7 +6,7 @@
 		.controller('RegisterCtrl', registerCtrl);
 		
 	/**@ngInject */
-	function registerCtrl($scope, accountService){
+	function registerCtrl($scope, accountService, toastr){
 		
 		init();
 		
@@ -21,6 +21,11 @@
 			} else {
 				$scope.rForm.passwordRepeated.$setValidity('confirm', false);
 			} */
+			
+			if($scope.rForm.$invalid){
+				toastr.error('Check form fields, some of them are invalid!', 'Invalid form' )
+				return;
+			}
 			
 			accountService.register($scope.newUser).then(function(){
 				alert("Registration succesful.");

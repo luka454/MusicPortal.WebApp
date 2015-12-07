@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		<form name="rForm" ng-submit="register()" class="form-horizontal">
+		<form name="rForm" ng-submit="register()" class="form-horizontal" novalidate>
 			<fieldset>
 				<legend>Registration</legend>
 				<div class="form-group" ng-class="{'has-error': rForm.username.$invalid && rForm.username.$touched}">
@@ -9,6 +9,20 @@
 						<input type="text" class="form-control" ng-model="newUser.username" 
 							id="username" name="username" placeholder="Username" required>
 					</div>
+					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.username.$invalid && rForm.username.$touched">
+						<span ng-if="rForm.email.$error.required">Required.</span>
+					</p>
+				</div>
+				<div class="form-group" ng-class="{'has-error': rForm.email.$invalid && rForm.email.$touched}">
+					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+					<div class="col-lg-10">
+						<input type="email" class="form-control" ng-model="newUser.email"
+							id="inputEmail" name="email" placeholder="Email" required>
+					</div>
+					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.email.$invalid && rForm.email.$touched">
+						<span ng-if="rForm.email.$error.required">Required.</span>
+						<span ng-if="rForm.email.$error.email">Email doesn't have valid format.</span>
+					</p>
 				</div>
 				<div class="form-group" ng-class="{'has-error': rForm.password.$invalid && rForm.password.$touched}">
 					<label for="password" class="col-lg-2 control-label">Password:</label>
@@ -16,9 +30,9 @@
 						<input type="password" class="form-control" ng-model="newUser.password" 
 							id="password" name="password" placeholder="Password" required>
 					</div>
-					<div class="col-lg-10 col-lg-offset-2">
-						<span ng-if="rForm.password.$error.required ">Required.</span>
-					</div>	
+					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.password.$invalid && rForm.password.$touched">
+						<span ng-if="rForm.password.$error.required">Required.</span>
+					</p>	
 				</div>
 				<div class="form-group" ng-class="{'has-error': rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched}">
 					<label for="passwordR" class="col-lg-2 control-label" >Repeat password:</label>
@@ -26,17 +40,10 @@
 						<input type="password" class="form-control" ng-model="newUser.passwordRepeated" confirm-password="newUser.password"
 							id="passwordR" name="passwordRepeated" placeholder="Repeat password" required>
 					</div>
-					<div class="col-lg-10 col-lg-offset-2">
+					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched">
 						<span ng-if="rForm.passwordRepeated.$error.required">Required.</span>
 						<span ng-if="rForm.passwordRepeated.$error.confirm">Passwords are not same.</span>
-					</div>	
-				</div>
-				<div class="form-group">
-					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
-					<div class="col-lg-10">
-						<input type="email" class="form-control" ng-model="newUser.email" 
-							id="inputEmail" placeholder="Email" required>
-					</div>
+					</p>	
 				</div>
 				<div class="form-group">
 					<div class="col-lg-10 col-lg-offset-2">
