@@ -1,34 +1,49 @@
-<form name="rForm" ng-submit="register()" class="form-horizontal">
-	<fieldset>
-		<legend>Registration</legend>
-		<div class="form-group">
-			<label for="username" class="col-lg-2 control-label">Username:</label>
-			<div class="col-lg-10">
-				<input type="text" class="form-control" ng-model="newUser.username" name="username" placeholder="Username">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="password" class="col-lg-2 control-label">Password:</label>
-			<div class="col-lg-10">
-				<input type="password" class="form-control" ng-model="newUser.password" name="password" placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="passwordR" class="col-lg-2 control-label">Repeat password:</label>
-			<div class="col-lg-10">
-				<input type="password" class="form-control" ng-model="newUser.passwordRepeated" name="password" placeholder="Repeat password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail" class="col-lg-2 control-label">Email</label>
-			<div class="col-lg-10">
-				<input type="email" class="form-control" ng-model="newUser.email" id="inputEmail" placeholder="Email">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-lg-10 col-lg-offset-2">
-				<button type="submit" class="btn btn-primary">Register</button>
-			</div>
-		</div>
-	</fieldset>
-</form>
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<form name="rForm" ng-submit="register()" class="form-horizontal">
+			<fieldset>
+				<legend>Registration</legend>
+				<div class="form-group" ng-class="{'has-error': rForm.username.$invalid && rForm.username.$touched}">
+					<label for="username" class="col-lg-2 control-label">Username:</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" ng-model="newUser.username" 
+							id="username" name="username" placeholder="Username" required>
+					</div>
+				</div>
+				<div class="form-group" ng-class="{'has-error': rForm.password.$invalid && rForm.password.$touched}">
+					<label for="password" class="col-lg-2 control-label">Password:</label>
+					<div class="col-lg-10" >
+						<input type="password" class="form-control" ng-model="newUser.password" 
+							id="password" name="password" placeholder="Password" required>
+					</div>
+					<div class="col-lg-10 col-lg-offset-2">
+						<span ng-if="rForm.password.$error.required ">Required.</span>
+					</div>	
+				</div>
+				<div class="form-group" ng-class="{'has-error': rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched}">
+					<label for="passwordR" class="col-lg-2 control-label" >Repeat password:</label>
+					<div class="col-lg-10">
+						<input type="password" class="form-control" ng-model="newUser.passwordRepeated" confirm-password="newUser.password"
+							id="passwordR" name="passwordRepeated" placeholder="Repeat password" required>
+					</div>
+					<div class="col-lg-10 col-lg-offset-2">
+						<span ng-if="rForm.passwordRepeated.$error.required">Required.</span>
+						<span ng-if="rForm.passwordRepeated.$error.confirm">Passwords are not same.</span>
+					</div>	
+				</div>
+				<div class="form-group">
+					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+					<div class="col-lg-10">
+						<input type="email" class="form-control" ng-model="newUser.email" 
+							id="inputEmail" placeholder="Email" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button type="submit" class="btn btn-primary">Register</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>	
+	</div>
+</div>

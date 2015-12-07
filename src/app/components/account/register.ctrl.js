@@ -10,7 +10,18 @@
 		
 		init();
 		
+		/*$scope.rForm.passwordRepeated.$validators.confirm = function(modelValue, viewValue){
+			return angular.equals(modelValue, $scope.newUser.password);
+		}*/
+		
 		$scope.register = function(){
+			
+			/*if(!angular.equals($scope.passwordRepeated, $scope.password)){
+				$scope.rForm.passwordRepeated.$setValidity('confirm', true);
+			} else {
+				$scope.rForm.passwordRepeated.$setValidity('confirm', false);
+			} */
+			
 			accountService.register($scope.newUser).then(function(){
 				alert("Registration succesful.");
 				init();	
