@@ -12,6 +12,11 @@
 				url: '/register',
 				templateUrl: 'app/components/account/register.tmpl.html',
 				controller: 'RegisterCtrl'
+			})
+			.state('login', {
+				url: '/login', 
+				templateUrl: 'app/components/account/login.tmpl.html',
+				controller: 'LoginCtrl'
 			});
 	}
 })()

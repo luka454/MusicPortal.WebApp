@@ -25,7 +25,8 @@
     function NavbarController($scope, moment) {
       $scope.links = [
        { title:'Home', state:'home'},
-       { title: 'Register', state:'register'}
+       { title: 'Register', state:'register'},
+       { title: 'Login', state:'login'}
       ];
       var vm = this;
 
