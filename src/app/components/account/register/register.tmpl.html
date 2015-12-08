@@ -4,49 +4,50 @@
 			<fieldset>
 				<legend>Registration</legend>
 				<div class="form-group" ng-class="{'has-error': rForm.username.$invalid && rForm.username.$touched}">
-					<label for="username" class="col-lg-2 control-label">Username:</label>
-					<div class="col-lg-10">
+					<label for="username" class="col-lg-3 control-label">Username:</label>
+					<div class="col-lg-9">
 						<input type="text" class="form-control" ng-model="newUser.username" 
 							id="username" name="username" placeholder="Username" required>
 					</div>
-					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.username.$invalid && rForm.username.$touched">
-						<span ng-if="rForm.email.$error.required">Required.</span>
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.username.$invalid && rForm.username.$touched">
+						<span ng-if="rForm.username.$error.required">Required.</span>
 					</p>
 				</div>
 				<div class="form-group" ng-class="{'has-error': rForm.email.$invalid && rForm.email.$touched}">
-					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
-					<div class="col-lg-10">
+					<label for="inputEmail" class="col-lg-3 control-label">Email</label>
+					<div class="col-lg-9">
 						<input type="email" class="form-control" ng-model="newUser.email"
 							id="inputEmail" name="email" placeholder="Email" required>
 					</div>
-					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.email.$invalid && rForm.email.$touched">
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.email.$invalid && rForm.email.$touched">
 						<span ng-if="rForm.email.$error.required">Required.</span>
 						<span ng-if="rForm.email.$error.email">Email doesn't have valid format.</span>
 					</p>
 				</div>
 				<div class="form-group" ng-class="{'has-error': rForm.password.$invalid && rForm.password.$touched}">
-					<label for="password" class="col-lg-2 control-label">Password:</label>
-					<div class="col-lg-10" >
+					<label for="password" class="col-lg-3 control-label">Password:</label>
+					<div class="col-lg-9" >
 						<input type="password" class="form-control" ng-model="newUser.password" 
-							id="password" name="password" placeholder="Password" required>
+							id="password" name="password" placeholder="Password" required ng-minlength="6">
 					</div>
-					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.password.$invalid && rForm.password.$touched">
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.password.$invalid && rForm.password.$touched">
 						<span ng-if="rForm.password.$error.required">Required.</span>
+						<span ng-if="rForm.password.$error.minlength">Password need to have at least 6 chars.</span>
 					</p>	
 				</div>
-				<div class="form-group" ng-class="{'has-error': rForm.confirmPassword.$invalid && rForm.confirmPassword.$touched}">
-					<label for="passwordR" class="col-lg-2 control-label" >Repeat password:</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" ng-model="newUser.confirmPassword" confirm-password="newUser.password"
-							id="passwordR" name="confirmPassword" placeholder="Repeat password" required>
+				<div class="form-group" ng-class="{'has-error': rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched}">
+					<label for="passwordR" class="col-lg-3 control-label" >Repeat password:</label>
+					<div class="col-lg-9">
+						<input type="password" class="form-control" ng-model="newUser.passwordRepeated" confirm-password="newUser.password"
+							id="passwordR" name="passwordRepeated" placeholder="Repeat password" required>
 					</div>
-					<p class="col-lg-10 col-lg-offset-2 help-block" ng-if="rForm.confirmPassword.$invalid && rForm.confirmPassword.$touched">
-						<span ng-if="rForm.confirmPassword.$error.required">Required.</span>
-						<span ng-if="rForm.confirmPassword.$error.confirm">Passwords are not same.</span>
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched">
+						<span ng-if="rForm.passwordRepeated.$error.required">Required.</span>
+						<span ng-if="rForm.passwordRepeated.$error.confirm">Passwords are not same.</span>
 					</p>	
 				</div>
 				<div class="form-group">
-					<div class="col-lg-10 col-lg-offset-2">
+					<div class="col-lg-9 col-lg-offset-3">
 						<button type="submit" class="btn btn-primary">Register</button>
 					</div>
 				</div>

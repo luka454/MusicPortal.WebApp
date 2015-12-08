@@ -1,7 +1,8 @@
-(function(){
+/* global toastr */
+(function () {
 	"use strict";
-	
+
 	angular
-		.module('mp.account',  ['LocalStorageModule', 'mp.urls'])
+		.module('mp.account', ['LocalStorageModule', 'mp.urls'])
 		.constant('toastr', toastr);
 })();

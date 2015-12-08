@@ -5,6 +5,7 @@
  * @author grevory <greg@gregpike.ca>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
+/* global document, window, alert*/
 (function (window, angular, undefined) {
     /*jshint globalstrict:true*/
     'use strict';
@@ -151,7 +152,9 @@
                 }
 
                 try {
-                    if (webStorage) { webStorage.setItem(deriveQualifiedKey(key), value) };
+                    if (webStorage) { 
+                        webStorage.setItem(deriveQualifiedKey(key), value);
+                    }
                     if (notify.setItem) {
                         $rootScope.$broadcast('LocalStorageModule.notification.setitem', { key: key, newvalue: value, storageType: self.storageType });
                     }
@@ -354,11 +357,11 @@
                         thisCookie = thisCookie.substring(1, thisCookie.length);
                     }
                     if (thisCookie.indexOf(deriveQualifiedKey(key) + '=') === 0) {
-                        var storedValues = decodeURIComponent(thisCookie.substring(prefix.length + key.length + 1, thisCookie.length))
+                        var storedValues = decodeURIComponent(thisCookie.substring(prefix.length + key.length + 1, thisCookie.length));
                         try {
                             return JSON.parse(storedValues);
                         } catch (e) {
-                            return storedValues
+                            return storedValues;
                         }
                     }
                 }

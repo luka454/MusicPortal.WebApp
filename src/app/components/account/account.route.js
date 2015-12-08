@@ -3,7 +3,7 @@
 	
 	angular
 		.module('mp.account')
-			.config(['$stateProvider', '$httpProvider', routeConfig]);
+			.config(routeConfig);
 	
 	/** @ngInject */	
 	function routeConfig($stateProvider, $httpProvider) {
@@ -17,11 +17,6 @@
 				url: '/register',
 				templateUrl: 'app/components/account/register/register.tmpl.html',
 				controller: 'RegisterCtrl'
-			})
-			.state('login', {
-				url: '/login', 
-				templateUrl: 'app/components/account/login.tmpl.html',
-				controller: 'LoginCtrl'
 			});
 	   	$httpProvider.interceptors.push('authInterceptor');
       	$httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
