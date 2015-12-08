@@ -43,7 +43,7 @@
             $http({
                 url: serverName + '/api/Account/Register',
                 method: "POST",
-                data: 'email=' + registerModel.email + '&password=' + registerModel.password + '&confirmPassword=' + registerModel.confirmPassword
+                data: registerModel
             }).then(function (response) {
                  deferred.resolve(response);
             },

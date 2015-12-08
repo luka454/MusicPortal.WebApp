@@ -3,6 +3,9 @@
 		<form name="rForm" ng-submit="register()" class="form-horizontal" novalidate>
 			<fieldset>
 				<legend>Registration</legend>
+				<div class="form-group has-error" ng-if="errors">
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-repeat="err in errors">{{err}}</p>
+				</div>
 				<div class="form-group" ng-class="{'has-error': rForm.username.$invalid && rForm.username.$touched}">
 					<label for="username" class="col-lg-3 control-label">Username:</label>
 					<div class="col-lg-9">
@@ -35,15 +38,15 @@
 						<span ng-if="rForm.password.$error.minlength">Password need to have at least 6 chars.</span>
 					</p>	
 				</div>
-				<div class="form-group" ng-class="{'has-error': rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched}">
-					<label for="passwordR" class="col-lg-3 control-label" >Repeat password:</label>
+				<div class="form-group" ng-class="{'has-error': rForm.confirmPassword.$invalid && rForm.confirmPassword.$touched}">
+					<label for="confirmPassword" class="col-lg-3 control-label" >Repeat password:</label>
 					<div class="col-lg-9">
-						<input type="password" class="form-control" ng-model="newUser.passwordRepeated" confirm-password="newUser.password"
-							id="passwordR" name="passwordRepeated" placeholder="Repeat password" required>
+						<input type="password" class="form-control" ng-model="newUser.confirmPassword" confirm-password="newUser.password"
+							id="passwordR" name="confirmPassword" placeholder="Repeat password" required>
 					</div>
-					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.passwordRepeated.$invalid && rForm.passwordRepeated.$touched">
-						<span ng-if="rForm.passwordRepeated.$error.required">Required.</span>
-						<span ng-if="rForm.passwordRepeated.$error.confirm">Passwords are not same.</span>
+					<p class="col-lg-9 col-lg-offset-3 help-block" ng-if="rForm.confirmPassword.$invalid && rForm.confirmPassword.$touched">
+						<span ng-if="rForm.confirmPassword.$error.required">Required.</span>
+						<span ng-if="rForm.confirmPassword.$error.confirm">Passwords are not same.</span>
 					</p>	
 				</div>
 				<div class="form-group">

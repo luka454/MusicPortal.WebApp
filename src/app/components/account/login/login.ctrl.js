@@ -16,11 +16,12 @@
 			
 			if($scope.rForm.$invalid){
 				toastr.error('Check form fields, some of them are invalid!', 'Invalid form' )
+				$scope.rForm.username.$setTouched();
+				$scope.rForm.password.$setTouched();
 				return;
 			}
 			
 			accountService.login($scope.loginModel).then(function(){
-				alert("Login succesful.");
 				
 				toastr.success("Login succesful.");
 				
@@ -28,7 +29,12 @@
 					$state.go('home');
 				}, 1500);
 			}, function(response){
-				alert(response.message);
+				
+				if(response.data.error_description)
+					toastr.error(response.data.error_description, 'Login failed.');
+				else
+					toastr.error('Login failed.');
+				
 			});
 			
 		};
