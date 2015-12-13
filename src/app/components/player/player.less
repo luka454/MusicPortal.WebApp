@@ -1,0 +1,123 @@
+@player-dark: #252525;
+@player-inverse: whitesmoke;
+
+.mpPlayer {
+	color: @player-inverse;
+	
+	position: absolute;	
+	bottom: 0px;
+	left: 15px;
+	
+	width: 400px;
+	.current {
+		
+		background-color: @player-dark;
+		height: 55px;
+		
+		.display {
+			display: inline-block;
+			padding: 5px 15px;
+			width: 230px;
+			height: 55px;
+			float: left; /* don't remove it's fix*/
+			.title {
+				font-size: 19px;
+			}
+			
+			.author {
+				font-size: 13px;
+			}
+		}
+		
+		.btn-ply{
+			font-size: 15px;
+			float: left; /* don't remove it's fix*/
+			height: 55px;
+			width: 55px;
+			color: @player-inverse;
+			padding: 18px 12px
+		}
+		.btn-ply:hover{
+			color: @player-dark;
+			background: @player-inverse;
+		}
+	}
+	
+	.expand {
+		height: 30px;
+		text-align: center;
+		vertical-align: middle;
+		padding: 5px;
+		
+		border-top: 1px transparent solid;
+		border-bottom: 1px transparent solid;
+		background-color: transparent;
+		color: @player-dark;
+		
+		touch-action: manipulation;
+		cursor: pointer;
+		background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+	
+		.user-select(none);
+		
+		&:hover{
+			background-color: @player-dark;
+			color: @player-inverse;
+			border-color: @player-inverse;
+		}
+		
+		&.expanded{
+			background-color: @player-dark;
+			color: @player-inverse;
+			border-color: @player-inverse;	
+			
+			&:hover{
+				background-color: transparent;
+				color: @player-dark;
+				border-color: transparent;
+			}
+		}
+	}
+	
+	.mp-playlist{
+		background-color: @player-dark;
+		color: @player-inverse;
+		height: 300px;
+		overflow: auto;
+		
+		.display{
+			display: inline-block;
+			padding: 5px 15px;
+			width: 230px;
+			height: 55px;
+			float: left; /* don't remove it's fix*/
+			.title {
+				font-size: 19px;
+			}
+			
+			.author {
+				font-size: 13px;
+			}
+		}
+		
+		.btn-ply{
+			font-size: 15px;
+			float: right; 
+			height: 32px;
+			width: 32px;
+			border-radius: 15px;
+			color: @player-inverse;
+			background-color: @player-dark;
+			padding: 4px;
+			margin: 10px;
+			
+			border: 2px @player-inverse solid;
+			
+			.user-select(none);
+		}
+		.btn-ply:hover{
+			color: @player-dark;
+			background: @player-inverse;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+<div class="mpPlayer">
+	
+	<div class="mp-playlist container-fluid" ng-if="expanded">
+		<div class="row" ng-repeat="song in songs">
+			<div class="display">
+				<div class="title">~ {{::song.title}}</div>
+				<div class="author">by <em>{{::song.author}}</em></div>
+			</div>
+			<div class="btn btn-ply" ng-click="play($index)"><div class="glyphicon glyphicon-play"></div></div>
+			<div class="btn btn-ply" ng-if="isPlaying($index)"><div class="glyphicon glyphicon-headphones"></div></div>
+		</div>		
+	</div>
+	
+	<div class="expand" ng-class="{'expanded' : expanded }" ng-click="toggleExpand()">
+		<div ng-show="!expanded" class="glyphicon glyphicon-menu-up"></div>
+		<div ng-show="expanded" class="glyphicon glyphicon-menu-down"></div>
+	</div>
+	<div class="current container-fluid">
+		<div class="row">
+			<div class="display clearfix">
+				<div class="title"><small class="glyphicon glyphicon-headphones"></small> {{currentSong.title}}</div>
+				<div class="author">by <em>{{currentSong.author}}</em></div>
+			</div>
+			<div class="btn btn-ply"><div class="glyphicon glyphicon-step-backward"></div></div>
+			<div class="btn btn-ply"><div class="glyphicon glyphicon-play"></div></div>
+			<div class="btn btn-ply"><div class="glyphicon glyphicon-step-forward"></div></div>
+		</div>
+	</div>
+	
+</div>
