@@ -21,9 +21,10 @@
 				<div class="title"><small class="glyphicon glyphicon-headphones"></small> {{currentSong.title}}</div>
 				<div class="author">by <em>{{currentSong.author}}</em></div>
 			</div>
-			<div class="btn btn-ply"><div class="glyphicon glyphicon-step-backward"></div></div>
-			<div class="btn btn-ply"><div class="glyphicon glyphicon-play"></div></div>
-			<div class="btn btn-ply"><div class="glyphicon glyphicon-step-forward"></div></div>
+			<div class="btn btn-ply" ng-click="previous()"><div class="glyphicon glyphicon-step-backward"></div></div>
+			<div class="btn btn-ply" ng-click="resume()" ng-hide="status() == 'playing'"><div class="glyphicon glyphicon-play"></div></div>
+			<div class="btn btn-ply" ng-click="pause()" ng-show="status() == 'playing'"><div class="glyphicon glyphicon-pause"></div></div>
+			<div class="btn btn-ply"" ng-click="next()"><div class="glyphicon glyphicon-step-forward"></div></div>
 		</div>
 	</div>
 	

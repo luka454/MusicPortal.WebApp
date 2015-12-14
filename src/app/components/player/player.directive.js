@@ -38,6 +38,26 @@
         $scope.play = function (index){
             PlayerService.play(index);
         }
+        
+        $scope.resume = function(){
+            PlayerService.resume();
+        }
+        
+        $scope.pause = function(){
+            PlayerService.pause();
+        }
+        
+        $scope.status = function(){
+            return PlayerService.getPlayingStatus();
+        }
+        
+        $scope.next = function(){
+            PlayerService.next();
+        }
+        
+        $scope.previous = function(){
+            PlayerService.previous();
+        }
     }
   }
 

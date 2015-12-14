@@ -11,7 +11,7 @@
 		
 		var _self = this;
 		//dohvatiti stream s soundclouda: http://api.soundcloud.com/tracks/236859400/stream?client_id=f4a709cdf488dc78cf418eb25711c8fa
-		var playing = false;
+		var playingStatus = "stoped";
 		var loop = "all";
 		var currentSong = { emptyObject : true };
 		var playlist = [];
@@ -36,7 +36,6 @@
 			angular.copy(newPlaylist, playlist);
 			
 			var first = true;
-		
 			for(var i = 0; i < playlist.length; i++){
 				if(!playlist[i]) //skip if element doesn't exist
 					continue;
@@ -53,7 +52,7 @@
 					));
 					
 					_smCurrentSound = i;
-					playing = true;
+					playingStatus = "playing";
 					first = false;
 					angular.copy(playlist[i], currentSong);
 				} else {
@@ -82,6 +81,10 @@
 			return playlist;
 		}
 		
+		this.getPlayingStatus = function(){
+			return playingStatus;
+		}
+		
 		this.resume = function resume(){
 			
 			if(_smCurrentSound < 0){
@@ -90,7 +93,7 @@
 			}
 			
 			_smSoundBuffer[_smCurrentSound].resume();
-			playing = true;
+			playingStatus = "playing";
 		}
 		
 		this.pause = function pause(){
@@ -101,7 +104,7 @@
 			}
 			
 			_smSoundBuffer[_smCurrentSound].pause();
-			playing = false;
+			playingStatus = "paused";
 		}
 		
 		/**
@@ -117,7 +120,14 @@
 			}
 			
 			if(_smCurrentSound == index){
-				_self.resume();
+				if(playingStatus == "playing"){ //do nothing if already playing
+					return;
+				} else if(playingStatus == "paused"){
+					_self.resume();	
+				} else { //playingStatus == "stoped"
+					_smSoundBuffer[_smCurrentSound].play();
+					playingStatus = "playing";
+				}
 				return;
 			} 
 			
@@ -128,7 +138,7 @@
 			
 			angular.copy(playlist[index], currentSong);
 			
-			playing = true;
+			playingStatus = "playing";
 		}
 		
 		/**
@@ -137,9 +147,64 @@
 		this.stop = function stop(){
 			if(_smCurrentSound >= 0) //There is current song. (if it's -1 that means that there isn't current song)
 				_smSoundBuffer[_smCurrentSound].stop();
-			playing = false;
+			playingStatus = "stoped";
 		}
 		
+		this.next = function next(){
+			var next = null;
+			
+			for(var i = _smCurrentSound + 1; i < _smSoundBuffer.length; i++){
+				if(_smSoundBuffer[i]){
+					next = i;
+					break;
+				}
+			}
+			
+			if(next != null){ //there is next
+				_self.play(next);
+				return;
+			}
+			
+			var first = null;
+			for(var i = 0; i < _smSoundBuffer.length; i++){
+				if(_smSoundBuffer[i]){
+					first = i;
+					break;
+				}
+			}
+			
+			if(first !== null){ //first song exists (list isn't empty)
+				_self.play(first);	
+			}
+	
+		}
+		
+		this.previous = function previous(){
+			var prev = null;
+			for(var i = _smCurrentSound - 1; i >= 0; i--){
+				if(_smSoundBuffer[i]){
+					prev = i;
+					break;
+				}
+			}
+			
+			if(prev != null){ //there is previous song
+				_self.play(prev);
+				return;
+			}
+			
+			var last = null;
+			for(var i = _smSoundBuffer.length - 1; i > _smCurrentSound; i--){
+				if(_smSoundBuffer[i]){
+					last = i;
+					break;
+				}
+			}
+			
+			if(last != null){
+				_self.play(last); 
+			}
+		}
 		/**
 		 * @description Depending on 'loop' 
 		 * */
@@ -153,7 +218,7 @@
 			
 			var next = null;
 			
-			playing = false;
+			playingStatus = "stoped";
 			
 			for(var i = _smCurrentSound + 1; i < _smSoundBuffer.length; i++){
 				if(_smSoundBuffer[i]){
@@ -188,8 +253,6 @@
 					_self.play(next);	
 				});
 			}
-			
-			
 		}
 		
 	}
