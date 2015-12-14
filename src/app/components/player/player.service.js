@@ -7,10 +7,12 @@
 		.service("PlayerService", playerService);
 		
 	/** @ngInject */
-	function playerService(SoundManager, $log){
+	function playerService(SoundManager, $log, $rootScope){
 		
+		var _self = this;
 		//dohvatiti stream s soundclouda: http://api.soundcloud.com/tracks/236859400/stream?client_id=f4a709cdf488dc78cf418eb25711c8fa
 		var playing = false;
+		var loop = "all";
 		var currentSong = { emptyObject : true };
 		var playlist = [];
 		
@@ -28,7 +30,7 @@
 		}
 		
 		this.setPlaylist = function setPlaylist(newPlaylist){
-			this.stop();
+			_self.stop();
 			clearBuffer();
 			
 			angular.copy(newPlaylist, playlist);
@@ -45,7 +47,8 @@
 							'id' : i,
 							'url' : playlist[i].link,
 							'autoLoad' : true,
-							'autoPlay' : true
+							'autoPlay' : true,
+							'onfinish': finishedClb
 						}
 					));
 					
@@ -59,7 +62,8 @@
 							'id' : i,
 							'url' : playlist[i].link,
 							'autoLoad' : true,
-							'autoPlay' : false
+							'autoPlay' : false,
+							'onfinish': finishedClb
 						}
 					));	
 				}	
@@ -100,7 +104,12 @@
 			playing = false;
 		}
 		
-		
+		/**
+		 * @description It start playing music. 
+		 * If you request to play song that is current song it will just resume it. 
+		 * If not it will stop current song, start new and set new as current.
+		 * !important call this within digest cicle or call $apply yourself
+		 * */
 		this.play = function play(index){
 			
 			if(!_smSoundBuffer[index]){
@@ -108,11 +117,11 @@
 			}
 			
 			if(_smCurrentSound == index){
-				this.resume();
+				_self.resume();
 				return;
 			} 
 			
-			this.stop();
+			_self.stop();
 			
 			_smCurrentSound = index;
 			_smSoundBuffer[_smCurrentSound].play();
@@ -122,10 +131,66 @@
 			playing = true;
 		}
 		
+		/**
+		 * @description It stop playing music
+		 * */
 		this.stop = function stop(){
 			if(_smCurrentSound >= 0) //There is current song. (if it's -1 that means that there isn't current song)
 				_smSoundBuffer[_smCurrentSound].stop();
 			playing = false;
 		}
+		
+		/**
+		 * @description Depending on 'loop' 
+		 * */
+		var finishedClb = function(){
+			
+			if(loop == "song"){
+				_smSoundBuffer[_smCurrentSound].play();
+				return;
+			}
+			
+			
+			var next = null;
+			
+			playing = false;
+			
+			for(var i = _smCurrentSound + 1; i < _smSoundBuffer.length; i++){
+				if(_smSoundBuffer[i]){
+					next = i;
+					break;
+				}
+			}
+			
+			if(next === null){ //there is no next song
+				
+				if(loop === "all"){ //start from begining
+					var first = null;
+					for(var i = 0; i < _smSoundBuffer.length; i++){
+						if(_smSoundBuffer[i]){
+							first = i;
+							break;
+						}
+					}
+					
+					if(first !== null){ //first song exists (list isn't empty)
+						$rootScope.$apply(function(){
+							_self.play(first);	
+						});
+					}
+				} else {
+					$rootScope.$apply(function(){
+						angular.copy({emptyObject : true}, currentSong);	
+					});
+				}
+			} else { //there is next song
+				$rootScope.$apply(function(){
+					_self.play(next);	
+				});
+			}
+			
+			
+		}
+		
 	}
 })();

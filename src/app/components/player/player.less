@@ -1,4 +1,4 @@
-@player-dark: #252525;
+@player-dark: darken(desaturate(#008cba,90%), 25%);
 @player-inverse: whitesmoke;
 
 .mpPlayer {
@@ -13,6 +13,7 @@
 		
 		background-color: @player-dark;
 		height: 55px;
+		color: @player-inverse;
 		
 		.display {
 			display: inline-block;
@@ -26,6 +27,7 @@
 			
 			.author {
 				font-size: 13px;
+				color: fade(@player-inverse, 75%);
 			}
 		}
 		
@@ -97,6 +99,7 @@
 			
 			.author {
 				font-size: 13px;
+				color: fade(@player-inverse, 70%);
 			}
 		}
 		
@@ -105,7 +108,7 @@
 			float: right; 
 			height: 32px;
 			width: 32px;
-			border-radius: 15px;
+			border-radius: 17px;
 			color: @player-inverse;
 			background-color: @player-dark;
 			padding: 4px;

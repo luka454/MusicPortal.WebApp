@@ -7,7 +7,7 @@
 		.controller('HomeCtrl', homeCtrl);
 		
 		/** @ngInject */
-		function homeCtrl($scope, PlayerService){
+		function homeCtrl($scope, PlayerService, SoundManager){
 			
 			$scope.songs = [
 				{
@@ -34,5 +34,6 @@
 			
 			PlayerService.setPlaylist($scope.songs);
 			PlayerService.play(2);
+			SoundManager.setPosition(2, 3000*60 + 20*1000);
 		}
 })();
