@@ -1,0 +1,45 @@
+.song-item {
+    @song-item-background: #ccc;
+    @song-item-hearted: #dd0089;
+    @side-wide : 50px;
+    
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: @song-item-background;
+    box-shadow: 0px 2px 5px 0px #999; 
+    
+    
+    .display {
+        position: absolute;
+        left: 0;
+        right: @side-wide;
+        top: 0;
+        bottom: 0;
+        padding: 10px 15px;
+        
+        .title{
+            font-size: 21px;
+        }
+    }
+    .side {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        
+        width: @side-wide;
+        padding: 10px 15px;
+        font-size: 19px;
+        
+        .hearted {
+            color: @song-item-hearted;
+            transform: scale(1.12);
+        }
+        
+        .unhearted:hover{
+            color: @song-item-hearted;
+        }
+        
+    }
+}

@@ -8,7 +8,7 @@
 	/** @ngInject */
 	function accountService($http, localStorageService, serverName, $q){
 			
-		var currentUser = { username: "", email: "", password: "", id: "", IsLoggedIn: false };
+		var currentUser = { username: "", email: "", password: "", id: "", isLoggedIn: false };
   
 
         this.login = function (loginModel) {
@@ -57,17 +57,20 @@
         };
         this.getCurrentUser = function () {
             var data = localStorageService.get('authorizationData');
-            if (currentUser.Id == "" && data.token != "")
+            if(!data){
+                this.logout();
+            }
+            else if (currentUser.id == "" && data.token != "")
             {
                 setCurrentUser(data);
             }
             return currentUser;
         };
         var setCurrentUser = function (loginModel) {
-            currentUser.Username = loginModel.userName;
-            currentUser.Email = loginModel.email;
-            currentUser.Id = loginModel.id;
-            currentUser.IsLoggedIn = true;
+            currentUser.username = loginModel.userName;
+            currentUser.email = loginModel.email;
+            currentUser.id = loginModel.id;
+            currentUser.isLoggedIn = true;
         }
     }
 })();
