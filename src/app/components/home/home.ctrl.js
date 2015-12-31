@@ -41,7 +41,7 @@
             }
             
     		$scope.isLoggedIn = function(){
-                return accountService.getCurrentUser().isLoggedIn;
+                return accountService.isLoggedIn();
             }
             
             $scope.go = function(state, params){

@@ -8,7 +8,7 @@
                 config.headers = config.headers || {};
 
                 var authData = localStorageService.get('authorizationData');
-                if (authData) {
+                if (authData && authData.token) {
                     config.headers.Authorization = 'Bearer ' + authData.token;
                 }
 

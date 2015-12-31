@@ -8,7 +8,7 @@
 	/** @ngInject */
 	function accountService($http, localStorageService, serverName, $q){
 			
-		var currentUser = { username: "", email: "", password: "", id: "", isLoggedIn: false };
+		var currentUser = { username: null, token: null, isLoggedIn: false };
   
 
         this.login = function (loginModel) {
@@ -20,12 +20,13 @@
                 method: "POST",
                 data: 'grant_type=password&username=' + loginModel.username + '&password=' + loginModel.password
             }).then(function (response) {
-                localStorageService.set('authorizationData', { token: response.data.access_token, username: response.data.userName, email: response.data.email, id: response.data.id});
-                setCurrentUser(response.data);
+                var data = { token: response.data.access_token, username: response.data.userName};
+                localStorageService.set('authorizationData', data);
+                setCurrentUser(data);
                 deferred.resolve(currentUser);
             }, 
             function (response) {
-                localStorageService.set('authorizationData', { token: "", username: "" });
+                localStorageService.set('authorizationData', { token: null, username: null });
                 currentUser.IsLoggedIn = false;
                 deferred.reject(response);
             });
@@ -34,7 +35,8 @@
         };
 
         this.logout = function () {
-            localStorageService.set('authorizationData', { token: "", username: "" });
+            localStorageService.set('authorizationData', { token: null, username: null });
+            currentUser.username = null;
             currentUser.IsLoggedIn = false;
         };
         this.register = function (registerModel) { 
@@ -48,7 +50,7 @@
                  deferred.resolve(response);
             },
             function (response) {
-                localStorageService.set('authorizationData', { token: "", username: "" });
+                localStorageService.set('authorizationData', { token: null, username: null });
                 currentUser.IsLoggedIn = false;
                 deferred.reject(response);
             });
@@ -57,20 +59,23 @@
         };
         this.getCurrentUser = function () {
             var data = localStorageService.get('authorizationData');
-            if(!data){
-                this.logout();
-            }
-            else if (currentUser.id == "" && data.token != "")
+            
+            if (data)
             {
                 setCurrentUser(data);
+            } else{
+                setCurrentUser({token:null, username:null});   
             }
             return currentUser;
         };
+        this.isLoggedIn = function(){
+            var c_user = this.getCurrentUser();
+            
+            return !!c_user && !!c_user.token         
+        }
         var setCurrentUser = function (loginModel) {
-            currentUser.username = loginModel.userName;
-            currentUser.email = loginModel.email;
-            currentUser.id = loginModel.id;
-            currentUser.isLoggedIn = true;
+            currentUser.token = loginModel.token
+            currentUser.username = loginModel.username;
         }
     }
 })();
