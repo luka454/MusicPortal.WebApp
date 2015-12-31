@@ -16,6 +16,14 @@
       <ul class="nav navbar-nav">
         <li ui-sref-active="active" ng-repeat="item in ::links"><a ui-sref="{{::item.state}}">{{::item.title}}</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right" ng-if="!isLoggedIn()">
+        <li ui-sref-active="active"><a ui-sref="register">Register</a></li>
+        <li ui-sref-active="active"><a ui-sref="login">Log in!</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" ng-if="isLoggedIn()">
+        <li><a ui-sref="logout">Log out</a></li>
+      </ul>
+      <p class="navbar-text navbar-right" ng-if="isLoggedIn()">Hello, {{getUser()}}</p>
     </div>
   </div>
 </nav>
