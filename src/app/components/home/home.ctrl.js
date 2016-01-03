@@ -13,22 +13,22 @@
 
             $scope.search = { 
                 searchStr : ""
-            }
+            };
             
     		$scope.isLoggedIn = function(){
                 return accountService.isLoggedIn();
-            }
+            };
             
             $scope.go = function(state, params){
                 $state.go(state, params)
-            }
+            };
             
             $scope.searchKey = function(keyEvent) {
                 
                 if (keyEvent.which === 13){
                     $scope.search();    
                 }
-            }
+            };
             
             $scope.search = function(){
                 
@@ -38,10 +38,8 @@
                 }, function(response){
                     toastr.error(response.data.MessageDetail,"Error while serching.");
                 });   
-            }
+            };
             
-			PlayerService.setPlaylist($scope.songs);
-			PlayerService.stop();
 
 		}
 })();

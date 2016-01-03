@@ -19,4 +19,4 @@
                 controller: 'AddSongCtrl'
             });
 	}
-})()
+})();

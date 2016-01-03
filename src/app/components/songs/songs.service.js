@@ -1,5 +1,5 @@
 (function(){
-    "use strict"
+    "use strict";
     
     angular
         .module('mp.songs')
@@ -9,15 +9,15 @@
     function songsService($http, $q, serverName){
         
         this.searchByQuery = function(songname){
-            return  $http.get(serverName + "/api/song/search?query=" + songname)
-        }
+            return  $http.get(serverName + "/api/song/search?query=" + songname);
+        };
         
         this.heart = function(songid){
             return $http.post(serverName + "/api/song/" + songid + "/heart");
-        }
+        };
         
         this.unheart = function(songid){
             return $http.post(serverName + "/api/song/" + songid + "/unheart");
-        }
+        };
     }
 })();

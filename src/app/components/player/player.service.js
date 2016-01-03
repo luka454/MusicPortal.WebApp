@@ -1,6 +1,6 @@
 /* global angular */
 (function(){
-	"use strict"
+	"use strict";
 	
 	angular
 		.module("mp.player")
@@ -27,7 +27,7 @@
 			});
 			angular.copy([], _smSoundBuffer);
 			_smCurrentSound = -1;
-		}
+		};
 		
 		this.setPlaylist = function setPlaylist(newPlaylist){
 			_self.stop();
@@ -37,8 +37,9 @@
 			
 			var first = true;
 			for(var i = 0; i < playlist.length; i++){
-				if(!playlist[i]) //skip if element doesn't exist
+				if(!playlist[i]){ //skip if element doesn't exist
 					continue;
+                }
 				
 				if(first){ //play if it's first element
 					_smSoundBuffer.push(SoundManager.createSound(
@@ -67,23 +68,23 @@
 					));	
 				}	
 			}
-		}
+		};
 		
 		this.getCurrentSong = function getCurrentSong(){
 			return currentSong;
-		}
+		};
 		
 		this.getCurrentSongIndex = function (){
 			return _smCurrentSound;
-		}
+		};
 		
 		this.getPlaylist = function getPlaylist(){
 			return playlist;
-		}
+		};
 		
 		this.getPlayingStatus = function(){
 			return playingStatus;
-		}
+		};
 		
 		this.resume = function resume(){
 			
@@ -94,7 +95,7 @@
 			
 			_smSoundBuffer[_smCurrentSound].resume();
 			playingStatus = "playing";
-		}
+		};
 		
 		this.pause = function pause(){
 			
@@ -105,7 +106,7 @@
 			
 			_smSoundBuffer[_smCurrentSound].pause();
 			playingStatus = "paused";
-		}
+		};
 		
 		/**
 		 * @description It start playing music. 
@@ -139,7 +140,7 @@
 			angular.copy(playlist[index], currentSong);
 			
 			playingStatus = "playing";
-		}
+		};
 		
 		/**
 		 * @description It stop playing music
@@ -148,7 +149,7 @@
 			if(_smCurrentSound >= 0) //There is current song. (if it's -1 that means that there isn't current song)
 				_smSoundBuffer[_smCurrentSound].stop();
 			playingStatus = "stoped";
-		}
+		};
 		
 		this.next = function next(){
 			var next = null;
@@ -177,7 +178,7 @@
 				_self.play(first);	
 			}
 	
-		}
+		};
 		
 		this.previous = function previous(){
 			var prev = null;
@@ -204,7 +205,7 @@
 			if(last != null){
 				_self.play(last); 
 			}
-		}
+		};
 		/**
 		 * @description Depending on 'loop' 
 		 * */
@@ -253,7 +254,7 @@
 					_self.play(next);	
 				});
 			}
-		}
+		};
 		
 	}
 })();
