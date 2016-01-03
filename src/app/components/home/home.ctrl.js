@@ -7,34 +7,9 @@
 		.controller('HomeCtrl', homeCtrl);
 		
 		/** @ngInject */
-		function homeCtrl($scope, PlayerService, accountService, $state, songService){
+		function homeCtrl($scope, PlayerService, accountService, $state, songService, toastr){
 			
-			$scope.songs = [
-				{
-					title : "Zemlja",
-					author : "Ekatarina Velika",
-					link : "/assets/01_Ekatarina_Velika_-_Zemlja.mp3",
-                    hearted: false
-				},
-				{
-					title : "Voda",
-					author : "Ekatarina Velika",
-					link : "/assets/05 Ekatarina Velika - Voda.mp3",
-                    hearted: false
-				},
-				{
-					title : "Prvi i posljednji dan",
-					author : "Ekatarina Velika",
-					link : "/assets/06 Ekatarina Velika - Prvi I Poslednji Dan.mp3",
-                    hearted: true
-				},
-				{
-					title : "Ljudi iz gradova",
-					author : "Ekatarina Velika",
-					link : "/assets/07 Ekatarina Velika - Ljudi Iz Gradova.mp3",
-                    hearted: false
-				}
-			];
+			$scope.songs = [];
 
             $scope.search = { 
                 searchStr : ""
@@ -57,10 +32,11 @@
             
             $scope.search = function(){
                 
-                songService.searchByQuery($scope.search.searchStr).then(function(data){
-                    alert('frc');
-                }, function(data){
-                    alert('nesto');
+                songService.searchByQuery($scope.search.searchStr).then(function(response){
+                    angular.copy(response.data, $scope.songs);
+                    
+                }, function(response){
+                    toastr.error(response.data.MessageDetail,"Error while serching.");
                 });   
             }
             

@@ -25,7 +25,7 @@
     function songDirective($scope, songService) {
         $scope.heartToggle = function(){
             //TODO call songService
-            if($scope.song.hearted){
+            if(!$scope.song.hearted){
                 songService.heart($scope.song.id);
             } else {
                 songService.unheart($scope.song.id);

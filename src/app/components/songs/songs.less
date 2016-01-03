@@ -21,6 +21,11 @@
         .title{
             font-size: 21px;
         }
+        
+        .author a{
+            font-style: italic;
+            cursor: pointer;
+        }
     }
     .side {
         position: absolute;
@@ -30,15 +35,20 @@
         
         width: @side-wide;
         padding: 10px 15px;
-        font-size: 19px;
+        font-size: 20px;
         
         .hearted {
             color: @song-item-hearted;
-            transform: scale(1.12);
+            cursor: pointer;
+            &:hover{
+                    transform: scale(1.12);
+            }
         }
         
         .unhearted:hover{
             color: @song-item-hearted;
+            cursor: pointer;
+            transform: scale(1.12);
         }
         
     }
