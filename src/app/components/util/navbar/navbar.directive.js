@@ -22,7 +22,8 @@
         /** @ngInject */
         function NavbarController($scope, accountService) {
             $scope.links = [
-                { title:'Home', state:'home'}
+                { title:'Home', state:'home'},
+                { title:'Playlists', state: 'playlists'}
             ];
 
             $scope.isLoggedIn = function(){

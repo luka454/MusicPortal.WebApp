@@ -1,6 +1,12 @@
 @player-dark: darken(desaturate(#008cba,90%), 25%);
 @player-inverse: whitesmoke;
 
+.nowarp{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .mpPlayer {
 	color: @player-inverse;
 	
@@ -24,11 +30,16 @@
 			float: left; /* don't remove it's fix*/
 			.title {
 				font-size: 19px;
+                .nowarp;
 			}
 			
 			.author {
 				font-size: 13px;
 				color: fade(@player-inverse, 75%);
+                .nowarp;
+                a {
+                    font-style: italic;
+                }
 			}
 		}
 		
@@ -101,6 +112,9 @@
 			.author {
 				font-size: 13px;
 				color: fade(@player-inverse, 70%);
+                a {
+                    font-style: italic;
+                }
 			}
 		}
 		

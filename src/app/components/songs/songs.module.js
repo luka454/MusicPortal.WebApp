@@ -2,5 +2,5 @@
     "use strict"
     
     angular
-        .module('mp.songs', ['mp.urls']);
+        .module('mp.songs', ['mp.urls', 'mp.player']);
 })();

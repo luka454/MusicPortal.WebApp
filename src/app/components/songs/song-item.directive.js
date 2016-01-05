@@ -22,8 +22,8 @@
     return directive;
 
     /** @ngInject */
-    function songDirective($scope, songService) {
-        $scope.heartToggle = function(){
+    function songDirective($scope, songService, PlayerService) {
+        $scope.heartToggle = function($event){
             //TODO call songService
             if(!$scope.song.hearted){
                 songService.heart($scope.song.id);
@@ -32,6 +32,15 @@
             }
             $scope.song.hearted = !$scope.song.hearted; 
             
+            $event.stopPropagation();
+        }
+        
+        $scope.play = function($event){
+            PlayerService.playOne($scope.song);
+        }
+        
+        $scope.currentPlay = function(){
+            return PlayerService.getCurrentSong().id == $scope.song.id;
         }
     }
   }

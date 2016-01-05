@@ -1,0 +1,47 @@
+@playlist-background: #e8e8e8;
+@play-color: @brand-primary; 
+.playlist{
+    
+    position: relative;
+    background-color: @playlist-background;
+    box-shadow: 0px 2px 5px 0px #999; 
+    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+    &>.playlist-title {
+        margin: 12px;
+        &>*{
+            display: block;
+        }
+        &>.playlist-play{
+            min-width: 100px;
+            max-width: 130px;
+            font-size: 17px;
+            border: 2px @play-color solid;
+            padding: 3px 4px;
+            border-radius: 12px;
+            text-align: center;
+            color: @play-color;
+            cursor: default;
+            &:hover{
+                background: @play-color;
+                color: @playlist-background;
+            }
+        }
+        
+        &>.playlist-no-play{
+            color: #999;
+            border-color: #999;
+            
+            &:hover{
+                background: @playlist-background;
+                color: #999;
+            }
+        }
+    }
+    &>.playlist-subtitle {
+        margin: 24px 24px;
+    }
+    
+}

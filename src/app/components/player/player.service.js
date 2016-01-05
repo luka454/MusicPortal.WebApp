@@ -29,11 +29,30 @@
 			_smCurrentSound = -1;
 		};
 		
+        this.playOne = function(song){
+            for(var i = 0; i < playlist.length; i++){
+            	if(!playlist[i]){ //skip if element doesn't exist
+					continue;
+                }
+			
+                if(playlist[i].id == song.id){
+                    this.play(i);
+                    return;
+                }
+            }
+            
+            
+             
+            playlist.splice(0, 0, song);
+            this.setPlaylist(playlist); 
+        }
+        
 		this.setPlaylist = function setPlaylist(newPlaylist){
 			_self.stop();
 			clearBuffer();
 			
-			angular.copy(newPlaylist, playlist);
+            if(playlist != newPlaylist)
+			    angular.copy(newPlaylist, playlist);
 			
 			var first = true;
 			for(var i = 0; i < playlist.length; i++){

@@ -1,12 +1,11 @@
-<div class="song-item">
+<div class="song-item" ng-click="play($event)" ng-class="{'c-playing':currentPlay() }">
     <div class="display">
         <div class="title">{{::song.title}}</div>
         <div class="author">by 
-            <span ng-repeat="author in song.authors"><a ui-sref="">{{::author.name}}</a><span ng-if="!$first">, </span></span>
+            <span ng-repeat="author in song.authors"><a ui-sref="home">{{::author.name}}</a><span ng-if="!$first">, </span></span>
         </div>
     </div>
     <div class="side">
-        <div class="glyphicon" ng-click="heartToggle()"
-        ng-class="{'hearted glyphicon-heart':song.hearted, 'unhearted glyphicon-heart-empty':!song.hearted}"></div>
-    </div>
+        <div class="glyphicon" ng-click="heartToggle($event)"
+        ng-class="{'hearted glyphicon-heart':song.hearted, 'unhearted glyphicon-heart-empty':!song.hearted}"></div><div class="glyphicon glyphicon-plus"></div></div>
 </div>
