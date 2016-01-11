@@ -43,5 +43,26 @@
     &>.playlist-subtitle {
         margin: 24px 24px;
     }
+}
+
+.modal-ply{
+    padding: 20px 10px;
+}
+
+.playlist-modal{
+    padding: 6px;
     
+    .playlist-body{
+        background-color: @playlist-background;
+        box-shadow: 0px 2px 5px 0px #999; 
+        
+        padding: 4px 12px;
+        cursor: pointer;
+        
+        &:hover{
+            transform: scale(1.01);
+            background-color: @brand-success;
+            color: white;
+        }
+    }
 }

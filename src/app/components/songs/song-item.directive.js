@@ -22,7 +22,7 @@
     return directive;
 
     /** @ngInject */
-    function songDirective($scope, songService, PlayerService) {
+    function songDirective($scope, songService, PlayerService, playlistService, toastr) {
         $scope.heartToggle = function($event){
             //TODO call songService
             if(!$scope.song.hearted){
@@ -41,6 +41,21 @@
         
         $scope.currentPlay = function(){
             return PlayerService.getCurrentSong().id == $scope.song.id;
+        }
+        
+        $scope.addToPlaylist = function(){
+            playlistService.openSelectPlaylist().result.then(function(data){
+                playlistService.addSongToPlaylist(data.id, $scope.song.id).then(function(){
+                    toastr.success("Successfully added song to playlist.");
+                }, function(response){
+                    toastr.error(response.data.Message,"Failed to add song to playlist.");
+                });
+            });
+        }
+        
+        $scope.addEvent = function($event){
+            $scope.addToPlaylist();
+            $event.stopPropagation();
         }
     }
   }

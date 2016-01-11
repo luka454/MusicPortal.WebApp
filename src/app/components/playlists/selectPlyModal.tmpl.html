@@ -1,0 +1,22 @@
+<div class="modal-ply">
+    <div class="container-fluid">
+        <h3>Select playlist</h3>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 playlist-modal"  ng-repeat="ps in playlists" ng-click="selectPlaylist($index)">
+                <div class="playlist-body">
+                    <div class="playlist-title">
+                        <h3>{{::ps.title}}</h3>
+                        <h5>Click to select</h5>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="row">
+            <div class="btn btn-danger col-md-offset-10 col-md-2 col-sm-2" ng-click="cancel()">Cancel</div>
+        </div>
+    </div>
+</div>

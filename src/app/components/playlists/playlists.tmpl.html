@@ -12,6 +12,18 @@
 
     <h3>Your Playlists</h3>
     <div class="container-fluid">
+        <div class="row playlist">
+            <div class="playlist-title">
+                <h3>New playlist</h3>
+            </div>
+            <div class="playlist-subtitle">
+                <div class="input-group">
+                    <span class="input-group-addon" ng-click="add()"><span class="glyphicon glyphicon-plus"></span></span>
+                    <input type="text" class="form-control" placeholder="New playlist title" 
+                     ng-model="newPlaylist.title" ng-keypress="addKey($event)">
+                </div>
+            </div>
+        </div>
         <div class="row playlist"  ng-repeat="ps in playlists">
             <div class="playlist-title">
                 <h3>{{::ps.title}}</h3>
