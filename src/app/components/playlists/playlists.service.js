@@ -14,11 +14,11 @@
             } else {
                 return $http.get(serverName + "/api/playlists");
             }
-        }
+        };
         
         this.makeNew = function(playlistName){
             return $http.post(serverName + "/api/playlists/add", {title:playlistName});
-        }
+        };
         
         this.openSelectPlaylist = function(){
             var modalInstance = $modal.open({
@@ -28,7 +28,7 @@
             });
             
             return modalInstance;
-        }
+        };
         
         this.addSongToPlaylist = function(playlistId, songId){
             return $http.post(serverName + "/api/playlists/song", 
@@ -36,6 +36,6 @@
                     playlist_id : playlistId,
                     song_id : songId
                 });
-        }
+        };
     }
 })();

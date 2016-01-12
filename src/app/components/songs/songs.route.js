@@ -6,7 +6,7 @@
 			.config(routeConfig);
 	
 	/** @ngInject */	
-	function routeConfig($stateProvider, $httpProvider) {
+	function routeConfig($stateProvider) {
 		$stateProvider
 			.state('songs', {
                 url: '/songs',

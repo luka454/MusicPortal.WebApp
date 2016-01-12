@@ -15,10 +15,10 @@
             
             $scope.selectPlaylist = function(index){
                 $modalInstance.close($scope.playlists[index]);
-            }
+            };
             
             $scope.cancel = function(){
                 $modalInstance.dismiss('cancel');
-            }
+            };
 		}
 })();

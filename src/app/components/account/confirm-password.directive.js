@@ -17,13 +17,13 @@
 					var data = modelValue || viewValue;
 					
 					return angular.equals(data, scope.original);
-				}
+				};
 				
-				scope.$watch('original', function(newValue){
+				scope.$watch('original', function(){
 					ctrl.$validate();
 				});
 			}
-		}
+		};
 	}
 	
 })();

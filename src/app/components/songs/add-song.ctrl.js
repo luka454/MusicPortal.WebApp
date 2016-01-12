@@ -7,8 +7,7 @@
 		.controller('AddSongCtrl', homeCtrl);
 		
 		/** @ngInject */
-		function homeCtrl($scope, songService){
+		function homeCtrl(){
 			
-	
 		}
 })();

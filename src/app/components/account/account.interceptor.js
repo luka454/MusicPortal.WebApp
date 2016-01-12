@@ -1,4 +1,5 @@
 (function (module) {
+    "use strict"
     module.factory('authInterceptor', [ 'localStorageService', function (localStorageService) {
 
         return{ 

@@ -10,14 +10,14 @@
 			
             $scope.isLoggedIn = function(){
                 return accountService.isLoggedIn();
-            }
+            };
              
             $scope.go = function(state, params){
-                $state.go(state, params)
+                $state.go(state, params);
             };
             
             if($scope.isLoggedIn()){
-                $scope.playlists = []
+                $scope.playlists = [];
                 
                 playlistService.getPlaylists(true).then(function (response){
                     angular.copy(response.data, $scope.playlists);
@@ -26,11 +26,12 @@
                 });
                 
                 $scope.playPlaylist = function(index){
-                    if(!$scope.playlists[index] || $scope.playlists[index].songs.length === 0)
+                    if(!$scope.playlists[index] || $scope.playlists[index].songs.length === 0){
                         return;
+                    }
                     
                     PlayerService.setPlaylist($scope.playlists[index].songs);
-                }
+                };
                 
                 $scope.newPlaylist = { title: "", locked : false };
                 
@@ -58,7 +59,7 @@
                         
                         $scope.newPlaylist.locked = false;
                         $scope.newPlaylist.title = "";
-                        toastr.success("Playlist successfully added.")
+                        toastr.success("Playlist successfully added.");
                     }, function(response){
                         toastr.error(response.data.MessageDetail,"Error while adding new playlist.");
                         

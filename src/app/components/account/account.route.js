@@ -26,4 +26,4 @@
       	$httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
 
 	}
-})()
+})();

@@ -19,7 +19,7 @@
 				$scope.rForm.username.$setTouched();
 				$scope.rForm.password.$setTouched();
 				return;
-			}
+			};
 			
 			accountService.login($scope.loginModel).then(function(){
 				

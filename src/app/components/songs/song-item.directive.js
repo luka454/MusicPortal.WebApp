@@ -12,11 +12,12 @@
     var directive = {
       replace: true,
       restrict: 'E',
-      templateUrl: '/app/components/songs/song-item.tmpl.html',
+      templateUrl: 'app/components/songs/song-item.tmpl.html',
       scope: { 
           song : '='
       },
-      controller: songDirective
+      controller: ['$scope', 'songService', 'PlayerService', 
+                    'playlistService', 'toastr','songDirective']
     };
 
     return directive;
@@ -33,15 +34,16 @@
             $scope.song.hearted = !$scope.song.hearted; 
             
             $event.stopPropagation();
-        }
+        };
         
         $scope.play = function($event){
             PlayerService.playOne($scope.song);
-        }
+            
+        };
         
         $scope.currentPlay = function(){
             return PlayerService.getCurrentSong().id == $scope.song.id;
-        }
+        };
         
         $scope.addToPlaylist = function(){
             playlistService.openSelectPlaylist().result.then(function(data){
@@ -51,12 +53,12 @@
                     toastr.error(response.data.Message,"Failed to add song to playlist.");
                 });
             });
-        }
+        };
         
         $scope.addEvent = function($event){
             $scope.addToPlaylist();
             $event.stopPropagation();
-        }
+        };
     }
   }
 

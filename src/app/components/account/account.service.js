@@ -71,11 +71,11 @@
         this.isLoggedIn = function(){
             var c_user = this.getCurrentUser();
             
-            return !!c_user && !!c_user.token         
-        }
+            return !!c_user && !!c_user.token;         
+        };
         var setCurrentUser = function (loginModel) {
-            currentUser.token = loginModel.token
+            currentUser.token = loginModel.token;
             currentUser.username = loginModel.username;
-        }
+        };  
     }
 })();

@@ -45,15 +45,16 @@
              
             playlist.splice(0, 0, song);
             this.setPlaylist(playlist); 
-        }
+        };
         
 		this.setPlaylist = function setPlaylist(newPlaylist){
 			_self.stop();
 			clearBuffer();
 			
-            if(playlist != newPlaylist)
+            if(playlist != newPlaylist){
 			    angular.copy(newPlaylist, playlist);
-			
+            }
+            
 			var first = true;
 			for(var i = 0; i < playlist.length; i++){
 				if(!playlist[i]){ //skip if element doesn't exist
@@ -165,8 +166,9 @@
 		 * @description It stop playing music
 		 * */
 		this.stop = function stop(){
-			if(_smCurrentSound >= 0) //There is current song. (if it's -1 that means that there isn't current song)
+			if(_smCurrentSound >= 0){ //There is current song. (if it's -1 that means that there isn't current song)
 				_smSoundBuffer[_smCurrentSound].stop();
+            }
 			playingStatus = "stoped";
 		};
 		

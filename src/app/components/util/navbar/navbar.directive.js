@@ -12,14 +12,13 @@
         var directive = {
             replace: true,
             restrict: 'E',
-            templateUrl: '/app/components/util/navbar/navbar.tmpl.html',
+            templateUrl: 'app/components/util/navbar/navbar.tmpl.html',
             scope: { },
-            controller: NavbarController
+            controller: ['$scope', 'accountService', NavbarController]
         };
 
         return directive;
 
-        /** @ngInject */
         function NavbarController($scope, accountService) {
             $scope.links = [
                 { title:'Home', state:'home'},
