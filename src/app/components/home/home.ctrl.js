@@ -40,6 +40,15 @@
                 });   
             };
             
-
+            $scope.flow = function(){
+                songService.getFlow().then(function(response){
+                   
+                   angular.copy(response.data, $scope.songs);
+                  
+                   toastr.success("Added " + $scope.songs.length + " song(s) to playlist", "Flow"); 
+                }, function(response){
+                    toastr.error(response.data.MessageDetail,"Flow error.");
+                })
+            }
 		}
 })();

@@ -19,5 +19,9 @@
         this.unheart = function(songid){
             return $http.post(serverName + "/api/song/" + songid + "/unheart");
         };
+        
+        this.getFlow = function(){
+            return  $http.get(serverName + "/api/ai/flow");
+        }
     }
 })();
