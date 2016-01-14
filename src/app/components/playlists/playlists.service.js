@@ -37,5 +37,9 @@
                     song_id : songId
                 });
         };
+        
+        this.deletePlaylist = function(playlistId){
+            return $http.get(serverName + "/api/playlists/" + playlistId + "/delete");
+        }
     }
 })();

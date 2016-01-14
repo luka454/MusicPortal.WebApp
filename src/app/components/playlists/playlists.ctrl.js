@@ -66,6 +66,15 @@
                         $scope.newPlaylist.locked = false;
                     });   
                 };
+                
+                $scope.delete = function(index){
+                    playlistService.deletePlaylist($scope.playlists[index].id).then(function(){
+                        $scope.playlists.splice(index, 1);
+                        toastr.success("Playlist deleted");
+                    },function(response){
+                       toastr.error(response.data.Message, "Failed to delete playlist"); 
+                    });
+                }
             }
 		}
 })();

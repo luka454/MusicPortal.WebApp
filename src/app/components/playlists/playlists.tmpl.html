@@ -26,7 +26,7 @@
         </div>
         <div class="row playlist"  ng-repeat="ps in playlists">
             <div class="playlist-title">
-                <h3>{{::ps.title}}</h3>
+                <h3>{{::ps.title}} <small class="glyphicon glyphicon-trash" ng-click="delete($index)"></small></h3>
                 <div class="playlist-play" ng-click="playPlaylist($index)"
                     ng-class="{'playlist-no-play': ps.songs.length === 0}" >
                     <span class="glyphicon glyphicon-play"></span>

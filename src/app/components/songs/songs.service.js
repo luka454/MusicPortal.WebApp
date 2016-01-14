@@ -23,5 +23,9 @@
         this.getFlow = function(){
             return  $http.get(serverName + "/api/ai/flow");
         }
+        
+        this.noticePlay = function(songid){
+            return $http.get(serverName + "/api/song/" + songid + "/play");
+        }
     }
 })();

@@ -9,14 +9,14 @@
 </div>
 <div ng-if="isLoggedIn()">
     <div class="row">
-        <div class="input-group col-md-6">
+        <div class="input-group col-md-12">
             <span class="input-group-addon" ng-click="search()"><span class="glyphicon glyphicon-search"></span></span>
             <input type="text" class="form-control" ng-model="search.searchStr" ng-keypress="searchKey($event)" 
             placeholder="Search songs... ">
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 flow-btn">
+        <div class="col-md-12 flow-btn">
             <div class="btn btn-success btn-block btn-lg" ng-click="flow()">
                 Flow
                 <small class="glyphicon glyphicon-leaf"></small>

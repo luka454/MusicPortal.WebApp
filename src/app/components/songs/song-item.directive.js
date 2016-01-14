@@ -17,7 +17,7 @@
           song : '='
       },
       controller: ['$scope', 'songService', 'PlayerService', 
-                    'playlistService', 'toastr','songDirective']
+                    'playlistService', 'toastr', songDirective]
     };
 
     return directive;

@@ -1,8 +1,9 @@
 <div class="song-item" ng-click="play($event)" ng-class="{'c-playing':currentPlay() }">
     <div class="display">
-        <div class="title">{{::song.title}}</div>
-        <div class="author">by 
-            <span ng-repeat="author in song.authors"><a ui-sref="home">{{::author.name}}</a><span ng-if="!$first">, </span></span>
+        <div class="title nowarp">{{::song.title}}</div>
+        <div class="author nowarp">by 
+            <span ng-repeat="author in song.authors"><a ui-sref="authors({id:{{author.id}}})"
+            ng-click="$event.stopPropagation()">{{::author.name}}</a><span ng-if="!$first">, </span></span>
         </div>
     </div>
     <div class="side">

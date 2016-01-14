@@ -7,7 +7,7 @@
 		.service("PlayerService", playerService);
 		
 	/** @ngInject */
-	function playerService(SoundManager, $log, $rootScope){
+	function playerService(SoundManager, $log, $rootScope, songService){
 		
 		var _self = this;
 		//dohvatiti stream s soundclouda: http://api.soundcloud.com/tracks/236859400/stream?client_id=f4a709cdf488dc78cf418eb25711c8fa
@@ -76,6 +76,7 @@
 					playingStatus = "playing";
 					first = false;
 					angular.copy(playlist[i], currentSong);
+                    songService.noticePlay(currentSong.id);
 				} else {
 					_smSoundBuffer.push(SoundManager.createSound(
 						{
@@ -158,6 +159,7 @@
 			_smSoundBuffer[_smCurrentSound].play();
 			
 			angular.copy(playlist[index], currentSong);
+            songService.noticePlay(currentSong.id);
 			
 			playingStatus = "playing";
 		};
