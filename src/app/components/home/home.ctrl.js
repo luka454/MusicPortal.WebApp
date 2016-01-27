@@ -46,6 +46,8 @@
                    angular.copy(response.data, $scope.songs);
                   
                    toastr.success("Added " + $scope.songs.length + " song(s) to playlist", "Flow"); 
+                   
+                   PlayerService.setPlaylist($scope.songs);
                 }, function(response){
                     toastr.error(response.data.MessageDetail,"Flow error.");
                 })
